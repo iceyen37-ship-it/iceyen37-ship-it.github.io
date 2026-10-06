@@ -15,7 +15,7 @@
 /* Layout: a single wide reading column; projects as full-width spreads alternating image side; recognition as a dated ledger. */
 :root {
   --paper: #f1f3f1; --surface: #ffffff; --ink: #142019; --muted: #55625b; --line: #d5ddd8;
-  --accent: #1f5fd1; --accent-soft: #e2ebfb; --warm: #e0663f;
+  --accent: #00C9D8; --accent-ink: #007A84; --accent-soft: #D3F4F7; --warm: #e0663f;
   --display: "Familjen Grotesk", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
   --body: "IBM Plex Sans", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
@@ -26,12 +26,13 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.7 var(--body); }
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--accent); text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 3px solid var(--warm); outline-offset: 3px; border-radius: 4px; }
+a { color: var(--accent-ink); text-underline-offset: 4px; text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; line-height: 1.12; }
 p { margin: 0; }
 .wrap { max-width: 1120px; margin: 0 auto; padding-inline: 24px; }
-.eyebrow { font: 500 .78rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.eyebrow { font: 500 .78rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--accent-ink); display: inline-flex; align-items: center; gap: 8px; }
+.eyebrow::before { content: ""; width: 10px; height: 10px; border-radius: 2px; background: var(--accent); }
 section { padding-block: 88px; border-top: 1px solid var(--line); }
 .sec-head { display: grid; gap: 14px; margin-bottom: 44px; max-width: 46rem; }
 .sec-head h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 700; letter-spacing: -.015em; }
@@ -43,19 +44,19 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; b
 .top nav { display: flex; gap: 22px; flex-wrap: wrap; font-size: .95rem; }
 .top nav a { color: var(--muted); text-decoration: none; }
 .top nav a:hover { color: var(--ink); }
-.top nav a.lang { color: var(--accent); font-weight: 600; }
+.top nav a.lang { color: var(--accent-ink); font-weight: 600; }
 
 .hero { padding-block: 96px 80px; display: grid; gap: 28px; }
 .hero .who { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 .hero .who h1 { font-size: clamp(1.25rem, 2.2vw, 1.5rem); font-weight: 700; }
 .hero .who span { font: 500 .85rem var(--mono); color: var(--muted); }
-.hero .headline { font: 700 clamp(2.3rem, 6.2vw, 4.6rem)/1.06 var(--display); letter-spacing: -.025em; max-width: 15ch; }
-:lang(zh-Hant) .hero .headline { max-width: 13em; letter-spacing: 0; line-height: 1.2; }
-.hero .headline em { font-style: normal; color: var(--accent); }
+.hero .headline { font: 700 clamp(2.1rem, 5.4vw, 4rem)/1.08 var(--display); letter-spacing: -.025em; max-width: 20ch; }
+:lang(zh-Hant) .hero .headline { max-width: 15em; letter-spacing: 0; line-height: 1.2; }
+.hero .headline em { font-style: normal; color: var(--accent-ink); }
 .hero .intro { font-size: 1.2rem; color: var(--muted); max-width: 40rem; }
 .cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 18px; border-radius: 999px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--line); color: var(--ink); background: var(--surface); cursor: pointer; font-family: inherit; }
-.btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); box-shadow: inset 0 -3px 0 var(--accent); }
 .btn:hover { border-color: var(--ink); }
 .facts-strip { display: flex; flex-wrap: wrap; gap: 10px; }
 .facts-strip span { font: 500 .8rem var(--mono); padding: 6px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--ink); }
@@ -110,6 +111,7 @@ header.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; b
 .mail { font: 600 clamp(1.1rem, 3vw, 1.6rem) var(--display); color: var(--ink); word-break: break-all; }
 footer { padding-block: 32px 48px; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
 
+@media (min-width: 1000px) { :lang(zh-Hant) .hero .headline { word-break: keep-all; max-width: none; } }
 @media (max-width: 820px) {
   section { padding-block: 64px; }
   .hero { padding-block: 64px 56px; }
@@ -128,7 +130,7 @@ footer { padding-block: 32px 48px; color: var(--muted); font-size: .9rem; border
 <main id="top">
   <div class="wrap hero">
     <div class="who"><h1>劉品姸 <span style="font-weight:500">Pin-Yen Liu</span></h1><span>服務設計・UX 設計師・台北</span></div>
-    <p class="headline">我設計讓長輩和照顧者真的用得上的健康照護。</p>
+    <p class="headline">我為長輩設計並開發數位健康工具，從他們本來就有的生活習慣出發。</p>
     <p class="intro">我從人開始：陪長輩走步道、訪談照顧者、找病人測試醫院系統。接著自己設計產品，也自己把它做出來，從插畫散步地圖到可以使用的 APP。</p>
     <div class="facts-strip"><span>2025 全國金獎</span><span>IDDSI 2026 海報發表</span><span>3 個上線作品</span><span>約 200 支剪輯作品</span></div>
     <div class="cta">
@@ -208,12 +210,12 @@ footer { padding-block: 32px 48px; color: var(--muted); font-size: .9rem; border
   </div></section>
 
   <section id="about"><div class="wrap">
-    <div class="sec-head"><span class="eyebrow">關於我</span><h2>設計師、研究者，也自己動手做</h2></div>
+    <div class="sec-head"><span class="eyebrow">關於我</span><h2>先走到使用者身邊，再把東西做出來</h2></div>
     <div class="about">
-      <div class="text"><p>我是商業設計背景，曾經當過影片剪輯師，後來走進服務設計。現在就讀台科大研究所，研究設計如何讓長輩和照顧他們的家人，更容易使用健康照護。</p><p>我喜歡走出螢幕的設計：步道看板上的地圖、長輩看得懂的海報、醫院願意轉給同仁參考的報告。需要工具的時候，我就自己把它做出來。</p></div>
+      <div class="text"><p>我是商業設計背景，當過幾年影片剪輯師，在截稿壓力下剪了約 200 支影片。現在就讀台科大設計研究所，專注在一個問題：怎麼讓長輩和照顧他們的家人，更容易使用健康照護。</p><p>我習慣貼近我要設計的對象：陪長輩走步道、訪談 20 位照顧者、找病人測試醫院系統。接著快速做出來，並持續修改到真的好用為止，我們的散步地圖就改了 20 多版。我用 Framer、GitHub 和 AI 開發工具做出自己的原型與 APP，也帶領小團隊，讓作品真正交到使用者手上。</p><p>台灣是全世界高齡化最快的社會之一，大部分的照顧責任仍然落在家人身上。我想做出讓照顧變得更輕鬆的工具。</p></div>
       <aside>
         <div><h3>學歷</h3><dl><dt>國立臺灣科技大學</dt><dd>商業設計 碩士班・就讀中</dd><dt>銘傳大學</dt><dd>商業設計學系 學士</dd></dl></div>
-        <div><h3>我會做的事</h3><div class="chips"><span>使用者訪談與使用性測試</span><span>服務設計（雙鑽石／三鑽石）</span><span>UI 與視覺設計</span><span>插畫與印刷品設計</span><span>前端原型開發（HTML、CSS、JavaScript）</span><span>影片剪輯與動態影像</span></div></div>
+        <div><h3>我會做的事</h3><div class="chips"><span>使用者訪談與使用性測試</span><span>服務設計（雙鑽石／三鑽石）</span><span>UI 與視覺設計</span><span>插畫與印刷品設計</span><span>原型製作與上線：Framer、GitHub</span><span>影片剪輯</span><span>Illustrator</span><span>Photoshop</span><span>InDesign</span><span>Figma</span><span>Premiere Pro</span></div></div>
       </aside>
     </div>
   </div></section>
